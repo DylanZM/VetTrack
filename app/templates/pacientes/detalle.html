@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mb-4">
+    <a href="{{ url_for('clientes.detalle_cliente', id=paciente.id_cliente) }}" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i>Volver al Cliente
+    </a>
+</div>
+
+<div class="row">
+    <!-- Patient Info -->
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-paw me-2"></i>Datos del Paciente</h5>
+            </div>
+            <div class="card-body text-center">
+                <i class="fas fa-paw fa-4x text-info mb-3"></i>
+                <h4>{{ paciente.nombre }}</h4>
+                <span class="badge bg-info mb-3">{{ paciente.especie }}</span>
+                <hr>
+                <div class="text-start">
+                    <p><strong>Raza:</strong> {{ paciente.raza or 'No especificada' }}</p>
+                    <p><strong>Peso:</strong> {{ paciente.peso or 'N/A' }} kg</p>
+                    <p><strong>Edad:</strong> {{ paciente.edad() or 'N/A' }} años</p>
+                    <p class="mb-0"><strong>Dueño:</strong> 
+                        <a href="{{ url_for('clientes.detalle_cliente', id=paciente.id_cliente) }}">
+                            {{ paciente.cliente.nombre }} {{ paciente.cliente.apellido }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medical History -->
+    <div class="col-md-8">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4><i class="fas fa-notes-medical me-2"></i>Historial Médico</h4>
+            <a href="{{ url_for('pacientes.nueva_visita', paciente_id=paciente.id_paciente) }}" class="btn btn-primary">
+                <i class="fas fa-plus me-1"></i>Nueva Visita
+            </a>
+        </div>
+
+        {% if paciente.visitas %}
+            {% for visita in paciente.visitas|sort(attribute='fecha_visita', reverse=True) %}
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ visita.fecha_visita.strftime('%d/%m/%Y %H:%M') }}</strong>
+                        <span class="text-muted ms-2">- {{ visita.motivo }}</span>
+                    </div>
+                    <span class="badge bg-secondary">{{ visita.usuario.nombre if visita.usuario else 'N/A' }}</span>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Diagnóstico:</strong>
+                            <p class="text-muted">{{ visita.diagnostico or 'Sin diagnóstico' }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Observaciones:</strong>
+                            <p class="text-muted">{{ visita.observaciones or 'Ninguna' }}</p>
+                        </div>
+                    </div>
+                    
+                    <h6 class="border-bottom pb-2"><i class="fas fa-pills me-1"></i>Tratamientos</h6>
+                    {% if visita.tratamientos %}
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Medicamento</th>
+                                    <th>Dosis</th>
+                                    <th>Duración</th>
+                                    <th>Indicaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for t in visita.tratamientos %}
+                                <tr>
+                                    <td>{{ t.medicamento }}</td>
+                                    <td>{{ t.dosis or 'N/A' }}</td>
+                                    <td>{{ t.duracion or 'N/A' }}</td>
+                                    <td>{{ t.indicaciones or 'N/A' }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small">No hay tratamientos registrados.</p>
+                    {% endif %}
+                    
+                    <div class="text-end">
+                        <a href="{{ url_for('pacientes.nuevo_tratamiento', visita_id=visita.id_visita) }}" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-plus me-1"></i>Agregar Tratamiento
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="card shadow-sm">
+                <div class="card-body text-center py-5 text-muted">
+                    <i class="fas fa-file-medical fa-3x mb-3 opacity-50"></i>
+                    <p>No hay visitas registradas para este paciente.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

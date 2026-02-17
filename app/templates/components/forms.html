@@ -1,0 +1,31 @@
+{% macro input_field(name, label, type='text', value='', required=False, placeholder='') %}
+<div class="mb-3">
+    <label for="{{ name }}" class="form-label">{{ label }}</label>
+    <input type="{{ type }}" class="form-control" id="{{ name }}" name="{{ name }}" value="{{ value }}" {% if required %}required{% endif %} placeholder="{{ placeholder }}">
+</div>
+{% endmacro %}
+
+{% macro textarea_field(name, label, value='', rows=3, required=False) %}
+<div class="mb-3">
+    <label for="{{ name }}" class="form-label">{{ label }}</label>
+    <textarea class="form-control" id="{{ name }}" name="{{ name }}" rows="{{ rows }}" {% if required %}required{% endif %}>{{ value }}</textarea>
+</div>
+{% endmacro %}
+
+{% macro select_field(name, label, options, selected='', required=False) %}
+<div class="mb-3">
+    <label for="{{ name }}" class="form-label">{{ label }}</label>
+    <select class="form-select" id="{{ name }}" name="{{ name }}" {% if required %}required{% endif %}>
+        <option value="">Seleccionar...</option>
+        {% for option in options %}
+            <option value="{{ option }}" {% if option == selected %}selected{% endif %}>{{ option }}</option>
+        {% endfor %}
+    </select>
+</div>
+{% endmacro %}
+
+{% macro submit_button(text, class='btn-primary') %}
+<div class="d-flex justify-content-end mt-4">
+    <button type="submit" class="btn {{ class }}">{{ text }}</button>
+</div>
+{% endmacro %}

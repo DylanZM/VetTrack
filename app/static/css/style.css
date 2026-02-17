@@ -1,0 +1,255 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Modern Teal/Emerald Palette */
+    --primary: #0d9488;       /* Teal 600 */
+    --primary-light: #14b8a6; /* Teal 500 */
+    --primary-dark: #0f766e;  /* Teal 700 */
+    --secondary: #64748b;     /* Slate 500 */
+    --accent: #f59e0b;        /* Amber 500 */
+    --bg-body: #f0fdfa;       /* Teal 50 */
+    --bg-card: #ffffff;
+    --text-main: #1e293b;     /* Slate 800 */
+    --text-muted: #64748b;    /* Slate 500 */
+    --success: #10b981;       /* Emerald 500 */
+    --danger: #ef4444;        /* Red 500 */
+    --warning: #f59e0b;       /* Amber 500 */
+    --info: #3b82f6;          /* Blue 500 */
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --radius-md: 0.75rem;     /* 12px */
+    --radius-lg: 1rem;        /* 16px */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Navbar Customization */
+.navbar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    color: var(--primary-dark) !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem !important;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary) !important;
+    background-color: rgba(13, 148, 136, 0.1);
+}
+
+.navbar-toggler {
+    border: none;
+    color: var(--primary);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Card Customization */
+.card {
+    background: var(--bg-card);
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Dashboard Stat Cards Override */
+.card.border-primary, 
+.card.border-info, 
+.card.border-warning, 
+.card.border-success {
+    border: none !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Gradient backgrounds for stat cards */
+.card.border-primary .card-body { background: linear-gradient(135deg, #ccfbf1 0%, #ffffff 100%); }
+.card.border-info .card-body { background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%); }
+.card.border-warning .card-body { background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%); }
+.card.border-success .card-body { background: linear-gradient(135deg, #dcfce7 0%, #ffffff 100%); }
+
+/* Button Customization */
+.btn {
+    border-radius: var(--radius-md);
+    padding: 0.6rem 1.25rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--text-muted);
+    border: 1px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+    background: #f8fafc;
+    color: var(--text-main);
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Form Controls */
+.form-control, .form-select {
+    border-radius: var(--radius-md);
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem 1rem;
+    background-color: #f8fafc;
+    transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: white;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+/* Table Customization */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table thead th {
+    background-color: #f1f5f9;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 1rem;
+    border: none;
+    first-child: border-top-left-radius: var(--radius-md);
+    last-child: border-top-right-radius: var(--radius-md);
+}
+
+.table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 0.75em;
+    font-weight: 600;
+    border-radius: 9999px;
+    letter-spacing: 0.025em;
+}
+
+.badge.bg-primary { background-color: rgba(13, 148, 136, 0.1) !important; color: var(--primary); }
+.badge.bg-success { background-color: rgba(16, 185, 129, 0.1) !important; color: var(--success); }
+.badge.bg-warning { background-color: rgba(245, 158, 11, 0.1) !important; color: var(--warning); }
+.badge.bg-danger { background-color: rgba(239, 68, 68, 0.1) !important; color: var(--danger); }
+.badge.bg-info { background-color: rgba(59, 130, 246, 0.1) !important; color: var(--info); }
+.badge.bg-secondary { background-color: #f1f5f9 !important; color: var(--text-muted); }
+
+/* Landing Page Hero Override */
+.bg-primary.text-white {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-primary.text-white::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+    background-size: cover;
+    opacity: 0.6;
+}
+
+/* Utilities */
+.shadow-custom { box-shadow: var(--shadow-lg); }
+.text-primary { color: var(--primary) !important; }
+.bg-light-custom { background-color: #f0fdfa; }
+
+/* Icon sizes */
+.fa-2x { font-size: 1.5rem; }
+.fa-3x { font-size: 2.5rem; }
+.fa-4x { font-size: 3.5rem; }
