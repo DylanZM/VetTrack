@@ -12,7 +12,8 @@
             </div>
             <div class="card-body">
                 <form method="POST">
-                    <div class="mb-3">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <div class="row g-3">
                         <label for="nombre" class="form-label">Nombre del Producto</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" 
                                value="{{ producto.nombre if producto else '' }}" required>

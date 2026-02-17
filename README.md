@@ -53,7 +53,8 @@ _(Imagen representativa)_
    ```
 
 4. **Inicializar la Base de Datos:**
-   La base de datos se crea automáticamente al iniciar la aplicación por primera vez.
+   La base de datos (`instance/vettrack.db`) se crea automáticamente al iniciar la aplicación por primera vez.
+   > **Nota:** La carpeta `instance` no se incluye en el repositorio por seguridad y se genera localmente en cada instalación.
 
 ## ▶️ Ejecución
 
